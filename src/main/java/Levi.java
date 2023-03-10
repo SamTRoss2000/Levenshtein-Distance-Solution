@@ -5,4 +5,8 @@ public class Levi {
     Levi(String word) {
         this.word = word;
     }
+
+     int distance(String secondWord) {
+        return 0;
+    }
 }
