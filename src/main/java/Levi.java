@@ -8,7 +8,8 @@ public class Levi {
 
      int distance(String secondWord) {
         if (this.word.equals(secondWord)) return 0;
-        if (this.word.length() != secondWord.length()) return 2;
+        if (this.word.length() != secondWord.length())
+            return Math.abs(secondWord.length() - this.word.length());
         return 1;
     }
 }

@@ -22,7 +22,10 @@ public class LeviTest {
     }
 
     @Test
-    void compareLengthOfStrings() {
+    void compareLengthOfWords() {
         assertEquals(kitten.distance("kittenss"), 2);
+        assertEquals(kitten.distance("kittens"), 1);
+        Levi kittens = new Levi("kittens");
+        assertEquals(kittens.distance("kitten"), 1);
     }
 }
