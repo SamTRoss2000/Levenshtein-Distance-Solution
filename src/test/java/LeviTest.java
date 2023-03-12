@@ -20,4 +20,9 @@ public class LeviTest {
     void doesNotReturnZeroIfWordsAreDifferent() {
         assertEquals(kitten.distance("mitten"), 1);
     }
+
+    @Test
+    void compareLengthOfStrings() {
+        assertEquals(kitten.distance("kittenss"), 2);
+    }
 }
