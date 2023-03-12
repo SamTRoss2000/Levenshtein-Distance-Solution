@@ -11,9 +11,13 @@ public class LeviTest {
         assertEquals(kitten, kitten);
     }
 
-    // Next - add another test that forces comparing equality of the word & secondWord
-    @Test
-    void doesTheDistanceMethodReturnAnInteger() {
+     @Test
+    void doesTheDistanceMethodReturnZeroWhenIdenticalWords() {
         assertEquals(kitten.distance("kitten"), 0);
+    }
+
+    @Test
+    void doesNotReturnZeroIfWordsAreDifferent() {
+        assertEquals(kitten.distance("mitten"), 1);
     }
 }

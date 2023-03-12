@@ -7,6 +7,7 @@ public class Levi {
     }
 
      int distance(String secondWord) {
-        return 0;
+        if (this.word.equals(secondWord)) return 0;
+        return 1;
     }
 }
