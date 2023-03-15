@@ -11,6 +11,11 @@ public class LeviTest {
         assertEquals(kitten, new Levi("kitten"));
     }
 
+    @Test
+    void areDifferentClassesInequal() {
+        assertNotEquals(kitten, "kitten");
+    }
+
      @Test
     void doesTheDistanceMethodReturnZeroWhenIdenticalWords() {
         assertEquals(kitten.distance("kitten"), 0);

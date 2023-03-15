@@ -15,6 +15,7 @@ public class Levi {
 
     @Override
     public boolean equals(Object obj) {
+        if(obj.getClass() != this.getClass()) return false;
         Levi object = (Levi) obj;
         return this.word.equals(object.word);
     }
