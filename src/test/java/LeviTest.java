@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class LeviTest {
 
@@ -22,15 +23,16 @@ public class LeviTest {
     }
 
     @Test
-    void doesNotReturnZeroIfWordsAreDifferent() {
-        assertEquals(kitten.distance("mitten"), 1);
-    }
-
-    @Test
     void compareLengthOfWords() {
         assertEquals(kitten.distance("kittenss"), 2);
         assertEquals(kitten.distance("kittens"), 1);
         Levi kittens = new Levi("kittens");
         assertEquals(kittens.distance("kitten"), 1);
+    }
+
+    @Test
+    void doesTheForLoopStartAfterFirstDifference() {
+        assertEquals(kitten.distance("mitten"), 6);
+        assertEquals(4, kitten.distance("kippan"));
     }
 }
