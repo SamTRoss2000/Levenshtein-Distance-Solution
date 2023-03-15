@@ -12,4 +12,10 @@ public class Levi {
             return Math.abs(secondWord.length() - this.word.length());
         return 1;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Levi object = (Levi) obj;
+        return this.word.equals(object.word);
+    }
 }

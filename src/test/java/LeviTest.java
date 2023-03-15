@@ -8,7 +8,7 @@ public class LeviTest {
 
     @Test
     void creatingNewLeviClass() {
-        assertEquals(kitten, kitten);
+        assertEquals(kitten, new Levi("kitten"));
     }
 
      @Test
