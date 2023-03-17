@@ -15,9 +15,11 @@ public class Levi {
 
          String diffSecondWord = StringUtils.difference(this.word, secondWord);
          String diffOriginalWord = StringUtils.difference(secondWord, this.word);
-            if (diffOriginalWord.substring(1).equals(diffSecondWord.substring(1))) {
-                return 1;
-            }
+         for (int i = 1; i < diffSecondWord.length(); i++) {
+             if (diffOriginalWord.substring(i).equals(diffSecondWord.substring(i))) {
+                 return i;
+             }
+         }
          return 10;
     }
 

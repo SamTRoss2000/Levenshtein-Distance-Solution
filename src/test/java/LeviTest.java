@@ -36,4 +36,12 @@ public class LeviTest {
         assertEquals(1, kitten.distance("kipten"));
         assertEquals(1, kitten.distance("mitten"));
     }
+
+    // Does the distance() method count how many differing adjacent letters there are
+    @Test
+    void canMultipleDifferentLettersBeCounted() {
+        assertEquals(2, kitten.distance("kanten"));
+        // Next step is adding more coverage to this test for if the differing letters are seperated
+        // by identical letters
+    }
 }
