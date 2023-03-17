@@ -30,9 +30,10 @@ public class LeviTest {
         assertEquals(1, kittens.distance("kitten"));
     }
 
+    // Does the distance() method return 1 if only one letter differs between the words
     @Test
-    void doesTheForLoopStartAfterFirstDifference() {
-        assertEquals(6, kitten.distance("mitten"));
-        assertEquals(4, kitten.distance("kippan"));
+    void ifTheWordsAreEqualAfterTheFirstDifferenceReturnOne() {
+        assertEquals(1, kitten.distance("kipten"));
+        assertEquals(1, kitten.distance("mitten"));
     }
 }

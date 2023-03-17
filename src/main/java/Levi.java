@@ -13,12 +13,12 @@ public class Levi {
         if (this.word.length() != secondWord.length())
             return Math.abs(secondWord.length() - this.word.length());
 
-         String diffLetters = StringUtils.difference(this.word, secondWord);
-         int count = 0;
-         for(int i = diffLetters.length(); i > 0; i--) {
-             count = count + 1;
-         }
-         return count;
+         String diffSecondWord = StringUtils.difference(this.word, secondWord);
+         String diffOriginalWord = StringUtils.difference(secondWord, this.word);
+            if (diffOriginalWord.substring(1).equals(diffSecondWord.substring(1))) {
+                return 1;
+            }
+         return 10;
     }
 
     @Override
