@@ -19,20 +19,20 @@ public class LeviTest {
 
      @Test
     void doesTheDistanceMethodReturnZeroWhenIdenticalWords() {
-        assertEquals(kitten.distance("kitten"), 0);
+        assertEquals(0, kitten.distance("kitten"));
     }
 
     @Test
     void compareLengthOfWords() {
-        assertEquals(kitten.distance("kittenss"), 2);
-        assertEquals(kitten.distance("kittens"), 1);
+        assertEquals(2, kitten.distance("kittenss"));
+        assertEquals(1, kitten.distance("kittens"));
         Levi kittens = new Levi("kittens");
-        assertEquals(kittens.distance("kitten"), 1);
+        assertEquals(1, kittens.distance("kitten"));
     }
 
     @Test
     void doesTheForLoopStartAfterFirstDifference() {
-        assertEquals(kitten.distance("mitten"), 6);
+        assertEquals(6, kitten.distance("mitten"));
         assertEquals(4, kitten.distance("kippan"));
     }
 }
