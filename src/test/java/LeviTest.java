@@ -26,6 +26,10 @@ public class LeviTest {
     void compareLengthOfWords() {
         assertEquals(2, kitten.distance("kittenss"));
         assertEquals(1, kitten.distance("kittens"));
+    }
+
+    @Test
+    void compareLengthOfShorterWordtoLonger() {
         Levi kittens = new Levi("kittens");
         assertEquals(1, kittens.distance("kitten"));
     }
