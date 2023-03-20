@@ -17,6 +17,17 @@ public class LeviTest {
         assertNotEquals(kitten, "kitten");
     }
 
+    @Test
+    void usingTheDistanceMethodOnAnEmptyString() {
+        assertEquals(6, kitten.distance(""));
+    }
+
+    @Test
+    void comparingTwoEmptyStringsUsingTheDistanceMethod() {
+        Levi emptyString = new Levi("");
+        assertEquals(0, emptyString.distance(""));
+    }
+
      @Test
     void doesTheDistanceMethodReturnZeroWhenIdenticalWords() {
         assertEquals(0, kitten.distance("kitten"));
