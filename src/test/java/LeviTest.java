@@ -74,7 +74,13 @@ public class LeviTest {
     @Test
     void canMultipleDifferentLettersBeCounted() {
         assertEquals(2, kitten.distance("kanten"));
-        // Next step is adding more coverage to this test for if the differing letters are seperated
-        // by identical letters
     }
+
+    @Test
+    void canDifferentLettersSeperatedByIdenticalLettersBeCounted() {
+        assertEquals(3, kitten.distance("kantenn"));
+    }
+
+    // Next step is adding more coverage to this test for if the differing letters are separated
+    // by identical letters
 }

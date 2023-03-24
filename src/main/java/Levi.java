@@ -3,6 +3,8 @@ import org.apache.commons.lang3.StringUtils;
 public class Levi {
 
     String word;
+    int diffLength;
+
 
     Levi(String word) {
         if (word == null) throw new IllegalArgumentException("The word within Levi cannot be null");
@@ -11,18 +13,32 @@ public class Levi {
 
      int distance(String secondWord) {
         if (secondWord == null) throw new IllegalArgumentException("The distance method cannot accept null");
+        int diffCounter = 0;
         if (this.word.equals(secondWord)) return 0;
-        if (this.word.length() != secondWord.length())
-            return Math.abs(secondWord.length() - this.word.length());
+        if (this.word.length() != secondWord.length()) {
+            diffLength = Math.abs(secondWord.length() - this.word.length());
+            diffCounter = diffCounter + diffLength;
+        }
+        if (this.word.length() > secondWord.length()) {
+            this.word = reduceWordLength(this.word);
+        }
+        if (this.word.length() < secondWord.length()) {
+            secondWord = reduceWordLength(secondWord);
+        }
 
          String diffSecondWord = StringUtils.difference(this.word, secondWord);
          String diffOriginalWord = StringUtils.difference(secondWord, this.word);
          for (int i = 1; i < diffSecondWord.length(); i++) {
              if (diffOriginalWord.substring(i).equals(diffSecondWord.substring(i))) {
-                 return i;
+                 diffCounter = diffCounter + i;
+                 return diffCounter;
              }
          }
-         return 10;
+         return diffCounter;
+    }
+
+    private String reduceWordLength(String word) {
+        return word.substring(0, (word.length() - diffLength));
     }
 
     @Override
