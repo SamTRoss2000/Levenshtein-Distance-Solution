@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,6 +16,14 @@ public class LeviTest {
     @Test
     void areDifferentClassesInequal() {
         assertNotEquals(kitten, "kitten");
+    }
+
+    @Test
+    void isLeviObjectNullCovered() {
+        IllegalArgumentException nullLeviThrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Levi(null);
+        });
+        assertEquals("The word within Levi cannot be null", nullLeviThrown.getMessage());
     }
 
     @Test

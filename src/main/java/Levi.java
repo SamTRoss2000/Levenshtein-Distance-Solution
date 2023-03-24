@@ -5,6 +5,7 @@ public class Levi {
     String word;
 
     Levi(String word) {
+        if (word == null) throw new IllegalArgumentException("The word within Levi cannot be null");
         this.word = word;
     }
 
