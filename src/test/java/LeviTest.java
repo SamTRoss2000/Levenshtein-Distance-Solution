@@ -27,6 +27,15 @@ public class LeviTest {
     }
 
     @Test
+    void isDistanceMethodNullCovered() {
+        IllegalArgumentException nullDistanceThrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            kitten.distance(null);
+        });
+
+        assertEquals("The distance method cannot accept null", nullDistanceThrown.getMessage());
+    }
+
+    @Test
     void usingTheDistanceMethodOnAnEmptyString() {
         assertEquals(6, kitten.distance(""));
     }

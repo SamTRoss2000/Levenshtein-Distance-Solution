@@ -10,6 +10,7 @@ public class Levi {
     }
 
      int distance(String secondWord) {
+        if (secondWord == null) throw new IllegalArgumentException("The distance method cannot accept null");
         if (this.word.equals(secondWord)) return 0;
         if (this.word.length() != secondWord.length())
             return Math.abs(secondWord.length() - this.word.length());
