@@ -29,6 +29,10 @@ public class Levi {
          String diffSecondWord = StringUtils.difference(this.word, secondWord);
          String diffOriginalWord = StringUtils.difference(secondWord, this.word);
          for (int i = 1; i < diffSecondWord.length(); i++) {
+             if (diffOriginalWord.substring(i, i +1).equals(diffSecondWord.substring(i, i +1))) {
+                 diffOriginalWord = diffOriginalWord.substring(i);
+                 diffSecondWord = diffSecondWord.substring(i);
+             }
              if (diffOriginalWord.substring(i).equals(diffSecondWord.substring(i))) {
                  diffCounter = diffCounter + i;
                  return diffCounter;
