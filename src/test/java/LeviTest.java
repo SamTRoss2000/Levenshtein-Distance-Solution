@@ -57,8 +57,9 @@ public class LeviTest {
         assertEquals(1, kitten.distance("kittens"));
     }
 
+    // Does the distance method return a positive value when the word within Levi is the longer word
     @Test
-    void compareLengthOfShorterWordtoLonger() {
+    void compareLengthOfShorterWordtoAnotherLongerWord() {
         Levi kittens = new Levi("kittens");
         assertEquals(1, kittens.distance("kitten"));
     }
@@ -72,12 +73,14 @@ public class LeviTest {
 
     // Does the distance() method count how many differing adjacent letters there are
     @Test
-    void canMultipleDifferentLettersBeCounted() {
+    void canMultipleDifferentAdjacentLettersBeCounted() {
         assertEquals(2, kitten.distance("kanten"));
     }
 
+    // Does the distance() method return an accurate value when their are differing adjacent letters
+    // and the words are of different lengths
     @Test
-    void canDifferentLettersSeperatedByIdenticalLettersBeCounted() {
+    void canMultipleDifferentAdjacentLettersBeCountedAndDifferentLength() {
         assertEquals(3, kitten.distance("kantenn"));
     }
 
