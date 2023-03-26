@@ -85,7 +85,13 @@ public class LeviTest {
     }
 
     @Test
-    void canDifferingLettersSeperatedByOneIdenticalLetterBeCounted() {
+    void canDifferingLettersSeparatedByOneIdenticalLetterBeCounted() {
         assertEquals(2, kitten.distance("katnen"));
     }
+
+    @Test
+    void canDifferingLettersSeparatedByMultipleLettersBeCounted() {
+        assertEquals(2, kitten.distance("kattin"));
+    }
+
 }
