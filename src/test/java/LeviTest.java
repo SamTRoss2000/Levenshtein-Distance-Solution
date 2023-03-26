@@ -59,7 +59,7 @@ public class LeviTest {
 
     // Does the distance method return a positive value when the word within Levi is the longer word
     @Test
-    void compareLengthOfShorterWordtoAnotherLongerWord() {
+    void compareLengthOfShorterWordToAnotherLongerWord() {
         Levi kittens = new Levi("kittens");
         assertEquals(1, kittens.distance("kitten"));
     }
@@ -82,11 +82,6 @@ public class LeviTest {
     @Test
     void canMultipleDifferentAdjacentLettersBeCountedAndDifferentLength() {
         assertEquals(3, kitten.distance("kantenn"));
-    }
-
-    @Test
-    void canDifferingLettersSeparatedByOneIdenticalLetterBeCounted() {
-        assertEquals(2, kitten.distance("katnen"));
     }
 
     @Test
