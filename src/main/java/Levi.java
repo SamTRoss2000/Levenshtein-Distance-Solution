@@ -13,6 +13,8 @@ public class Levi {
 
      int distance(String secondWord) {
         if (secondWord == null) throw new IllegalArgumentException("The distance method cannot accept null");
+        this.word = removeBlankSpaces(this.word);
+        secondWord = removeBlankSpaces(secondWord);
         if (this.word.equals(secondWord)) return 0;
         int diffCounter = 0;
         if (this.word.length() != secondWord.length()) {
@@ -34,6 +36,10 @@ public class Levi {
              }
          }
          return diffCounter;
+    }
+
+    private String removeBlankSpaces(String word) {
+        return word.replaceAll(" ", "");
     }
 
     private String reduceWordLength(String word) {

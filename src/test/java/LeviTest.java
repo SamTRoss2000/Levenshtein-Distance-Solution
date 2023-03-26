@@ -46,6 +46,13 @@ public class LeviTest {
         assertEquals(0, emptyString.distance(""));
     }
 
+    @Test
+    void doesTheDistanceMethodIgnoreBlankSpaces() {
+        assertEquals(0, kitten.distance("kit ten"));
+        Levi kittenWithSpace = new Levi("kit ten");
+        assertEquals(0, kittenWithSpace.distance("kitten"));
+    }
+
      @Test
     void doesTheDistanceMethodReturnZeroWhenIdenticalWords() {
         assertEquals(0, kitten.distance("kitten"));
