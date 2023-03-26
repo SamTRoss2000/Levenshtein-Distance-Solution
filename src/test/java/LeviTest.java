@@ -89,4 +89,8 @@ public class LeviTest {
         assertEquals(2, kitten.distance("kattin"));
     }
 
+    @Test
+    void testingTheChallengeSpecification() {
+        assertEquals(3, kitten.distance("sitting"));
+    }
 }
