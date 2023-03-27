@@ -6,20 +6,22 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class LeviTest {
 
-    Levi kitten = new Levi("kitten");
+    private final String emptyString = "";
+    String kittenString = "kitten";
+    Levi kitten = new Levi(kittenString);
 
     @Test
-    void creatingNewLeviClass() {
-        assertEquals(kitten, new Levi("kitten"));
+    void identicalLeviObjectsAreEqual() {
+        assertEquals(kitten, new Levi(kittenString));
     }
 
     @Test
-    void areDifferentClassesInequal() {
-        assertNotEquals(kitten, "kitten");
+    void differentClassesAreUnequal() {
+        assertNotEquals(kitten, kittenString);
     }
 
     @Test
-    void isLeviObjectNullCovered() {
+    void nullWordsAreIllegalArguments() {
         IllegalArgumentException nullLeviThrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new Levi(null);
         });
@@ -27,7 +29,7 @@ public class LeviTest {
     }
 
     @Test
-    void isDistanceMethodNullCovered() {
+    void nullSecondWordsAreIllegalArgumentsForDistance() {
         IllegalArgumentException nullDistanceThrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             kitten.distance(null);
         });
@@ -36,68 +38,54 @@ public class LeviTest {
     }
 
     @Test
-    void usingTheDistanceMethodOnAnEmptyString() {
-        assertEquals(6, kitten.distance(""));
+    void emptyDistanceDefersToInputLength() {
+        assertEquals(kittenString.length(), kitten.distance(emptyString));
     }
 
     @Test
-    void comparingTwoEmptyStringsUsingTheDistanceMethod() {
-        Levi emptyString = new Levi("");
-        assertEquals(0, emptyString.distance(""));
+    void emptyStringsHaveNoDistance() {
+        Levi emptyLevi = new Levi(emptyString);
+        assertEquals(emptyString.length(), emptyLevi.distance(emptyString));
     }
 
     @Test
-    void doesTheDistanceMethodIgnoreBlankSpaces() {
+    void theDistanceMethodIgnoresBlankSpaces() {
         assertEquals(0, kitten.distance("kit ten"));
         Levi kittenWithSpace = new Levi("kit ten");
-        assertEquals(0, kittenWithSpace.distance("kitten"));
+        assertEquals(0, kittenWithSpace.distance(kittenString));
+    }
+
+//    @Test
+//    void areCapitalLettersIgnored() {
+//        assertEquals(0, kitten.distance("Kitten"));
+//    }
+
+     @Test
+    void identicalStringsHaveNoDistance() {
+        assertEquals(0, kitten.distance(kittenString));
+    }
+
+    @Test
+    void distanceIncreasesBasedOnInputLengthDifference() {
+        assertEquals(1, kitten.distance("kittens"));
+        assertEquals(1, kitten.distance("kitte"));
     }
 
      @Test
-    void doesTheDistanceMethodReturnZeroWhenIdenticalWords() {
-        assertEquals(0, kitten.distance("kitten"));
-    }
-
-    @Test
-    void compareLengthOfWords() {
-        assertEquals(2, kitten.distance("kittenss"));
-        assertEquals(1, kitten.distance("kittens"));
-    }
-
-    // Does the distance method return a positive value when the word within Levi is the longer word
-    @Test
-    void compareLengthOfShorterWordToAnotherLongerWord() {
-        Levi kittens = new Levi("kittens");
-        assertEquals(1, kittens.distance("kitten"));
-    }
-
-    // Does the distance() method return 1 if only one letter differs between the words
-    @Test
-    void ifTheWordsAreEqualAfterTheFirstDifferenceReturnOne() {
+    void distanceIncreasesBasedOnCharacterDifference() {
         assertEquals(1, kitten.distance("kipten"));
         assertEquals(1, kitten.distance("mitten"));
+         String adjacentCharacterDifference = "kanten";
+         String nonAdjacentCharacterDifference = "kattin";
+         assertEquals(2, kitten.distance(adjacentCharacterDifference));
+         assertEquals(2, kitten.distance(nonAdjacentCharacterDifference));
     }
 
-    // Does the distance() method count how many differing adjacent letters there are
-    @Test
-    void canMultipleDifferentAdjacentLettersBeCounted() {
-        assertEquals(2, kitten.distance("kanten"));
-    }
-
-    // Does the distance() method return an accurate value when their are differing adjacent letters
+    // Does the distance() method return an accurate value when there are differing adjacent letters
     // and the words are of different lengths
     @Test
-    void canMultipleDifferentAdjacentLettersBeCountedAndDifferentLength() {
+    void differenceReasonsCanBeCombined() {
         assertEquals(3, kitten.distance("kantenn"));
-    }
-
-    @Test
-    void canDifferingLettersSeparatedByMultipleLettersBeCounted() {
-        assertEquals(2, kitten.distance("kattin"));
-    }
-
-    @Test
-    void testingTheChallengeSpecification() {
         assertEquals(3, kitten.distance("sitting"));
     }
 }
