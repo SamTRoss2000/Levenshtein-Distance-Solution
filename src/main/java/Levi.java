@@ -17,7 +17,7 @@ public class Levi {
         secondWord = removeBlankSpaces(secondWord);
         if (this.word.equals(secondWord)) return 0;
         int diffCounter = 0;
-        if (this.word.length() != secondWord.length()) {
+        if (areWordLengthsUnequal(secondWord)) {
             diffLength = Math.abs(secondWord.length() - this.word.length());
             diffCounter = diffCounter + diffLength;
         }
@@ -36,6 +36,10 @@ public class Levi {
              }
          }
          return diffCounter;
+    }
+
+    private boolean areWordLengthsUnequal(String secondWord) {
+        return this.word.length() != secondWord.length();
     }
 
     private String removeBlankSpaces(String word) {
