@@ -60,7 +60,7 @@ public class LeviTest {
 //        assertEquals(0, kitten.distance("Kitten"));
 //    }
 
-     @Test
+    @Test
     void identicalStringsHaveNoDistance() {
         assertEquals(0, kitten.distance(kittenString));
     }
@@ -71,14 +71,14 @@ public class LeviTest {
         assertEquals(1, kitten.distance("kitte"));
     }
 
-     @Test
+    @Test
     void distanceIncreasesBasedOnCharacterDifference() {
         assertEquals(1, kitten.distance("kipten"));
         assertEquals(1, kitten.distance("mitten"));
-         String adjacentCharacterDifference = "kanten";
-         String nonAdjacentCharacterDifference = "kattin";
-         assertEquals(2, kitten.distance(adjacentCharacterDifference));
-         assertEquals(2, kitten.distance(nonAdjacentCharacterDifference));
+        String adjacentCharacterDifference = "kanten";
+        String nonAdjacentCharacterDifference = "kattin";
+        assertEquals(2, kitten.distance(adjacentCharacterDifference));
+        assertEquals(2, kitten.distance(nonAdjacentCharacterDifference));
     }
 
     // Does the distance() method return an accurate value when there are differing adjacent letters

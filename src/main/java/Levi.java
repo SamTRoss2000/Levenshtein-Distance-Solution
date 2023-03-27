@@ -1,58 +1,47 @@
-import org.apache.commons.lang3.StringUtils;
-
 public class Levi {
 
     String word;
-    int diffLength;
-
 
     Levi(String word) {
         if (word == null) throw new IllegalArgumentException("The word within Levi cannot be null");
-        this.word = word;
+        this.word = removeBlankSpaces(word);
     }
 
-     int distance(String secondWord) {
+    int distance(String secondWord) {
         if (secondWord == null) throw new IllegalArgumentException("The distance method cannot accept null");
-        this.word = removeBlankSpaces(this.word);
         secondWord = removeBlankSpaces(secondWord);
         if (this.word.equals(secondWord)) return 0;
-        int diffCounter = 0;
-        if (areWordLengthsUnequal(secondWord)) {
-            diffLength = Math.abs(secondWord.length() - this.word.length());
-            diffCounter = diffCounter + diffLength;
-        }
-        if (this.word.length() > secondWord.length()) {
-            this.word = reduceWordLength(this.word);
-        }
-        if (this.word.length() < secondWord.length()) {
-            secondWord = reduceWordLength(secondWord);
-        }
-
-         String diffSecondWord = StringUtils.difference(this.word, secondWord);
-         String diffOriginalWord = StringUtils.difference(secondWord, this.word);
-         for (int i = 0; i < diffSecondWord.length(); i++) {
-             if (!diffOriginalWord.substring(i, i+1).equals(diffSecondWord.substring(i, i+1))) {
-                 diffCounter = diffCounter + 1;
-             }
-         }
-         return diffCounter;
+        return calculateDistance(secondWord);
     }
 
-    private boolean areWordLengthsUnequal(String secondWord) {
-        return this.word.length() != secondWord.length();
+    private int calculateDistance(String secondWord) {
+        int diffCounter = calculateLengthDistance(secondWord);
+        diffCounter += calculateCharacterDistance(secondWord);
+        return diffCounter;
+    }
+
+    public int calculateCharacterDistance(String secondWord) {
+        int result = 0;
+        int shortestLength = Math.min(this.word.length(), secondWord.length());
+        for (int i = 0; i < shortestLength; i++) {
+            if (word.charAt(i) != secondWord.charAt(i)) {
+                result++;
+            }
+        }
+        return result;
+    }
+
+    public int calculateLengthDistance(String secondWord) {
+        return Math.abs(secondWord.length() - this.word.length());
     }
 
     private String removeBlankSpaces(String word) {
         return word.replaceAll(" ", "");
     }
 
-    private String reduceWordLength(String word) {
-        return word.substring(0, (word.length() - diffLength));
-    }
-
     @Override
     public boolean equals(Object obj) {
-        if(obj.getClass() != this.getClass()) return false;
+        if (obj.getClass() != this.getClass()) return false;
         Levi object = (Levi) obj;
         return this.word.equals(object.word);
     }
