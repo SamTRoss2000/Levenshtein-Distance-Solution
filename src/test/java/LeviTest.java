@@ -55,10 +55,12 @@ public class LeviTest {
         assertEquals(0, kittenWithSpace.distance(kittenString));
     }
 
-//    @Test
-//    void areCapitalLettersIgnored() {
-//        assertEquals(0, kitten.distance("Kitten"));
-//    }
+    @Test
+    void theDistanceMethodIgnoresCapitalLetters() {
+        assertEquals(0, kitten.distance("Kitten"));
+        Levi kittenCapitalCase = new Levi("Kitten");
+        assertEquals(0,kittenCapitalCase.distance(kittenString));
+    }
 
     @Test
     void identicalStringsHaveNoDistance() {

@@ -5,11 +5,13 @@ public class Levi {
     Levi(String word) {
         if (word == null) throw new IllegalArgumentException("The word within Levi cannot be null");
         this.word = removeBlankSpaces(word);
+        this.word = lowerCase(this.word);
     }
 
     int distance(String secondWord) {
         if (secondWord == null) throw new IllegalArgumentException("The distance method cannot accept null");
         secondWord = removeBlankSpaces(secondWord);
+        secondWord = lowerCase(secondWord);
         if (this.word.equals(secondWord)) return 0;
         return calculateDistance(secondWord);
     }
@@ -18,6 +20,10 @@ public class Levi {
         int diffCounter = calculateLengthDistance(secondWord);
         diffCounter += calculateCharacterDistance(secondWord);
         return diffCounter;
+    }
+
+    public int calculateLengthDistance(String secondWord) {
+        return Math.abs(secondWord.length() - this.word.length());
     }
 
     public int calculateCharacterDistance(String secondWord) {
@@ -31,12 +37,12 @@ public class Levi {
         return result;
     }
 
-    public int calculateLengthDistance(String secondWord) {
-        return Math.abs(secondWord.length() - this.word.length());
-    }
-
     private String removeBlankSpaces(String word) {
         return word.replaceAll(" ", "");
+    }
+
+    private String lowerCase(String secondWord) {
+        return secondWord.toLowerCase();
     }
 
     @Override
