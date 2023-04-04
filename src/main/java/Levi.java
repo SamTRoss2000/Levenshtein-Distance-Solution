@@ -1,40 +1,35 @@
-public class Levi {
+import java.util.Arrays;
+import java.util.List;
 
-    String word;
+public class Levi implements LeviCalculator {
+
+    List<LeviCalculator> calculators;
+    Levi(List<LeviCalculator> calculators) {
+        if (calculators == null) throw new IllegalArgumentException("The word within Levi cannot be null");
+        this.calculators = calculators;
+    }
 
     Levi(String word) {
         if (word == null) throw new IllegalArgumentException("The word within Levi cannot be null");
-        this.word = removeBlankSpaces(word);
-        this.word = lowerCase(this.word);
+        String intermediary = removeBlankSpaces(word);
+        intermediary = lowerCase(intermediary);
+        calculators = Arrays.asList(
+                new LeviLength(intermediary),
+                new LeviCharacter(intermediary)
+        );
     }
 
-    int distance(String secondWord) {
+    public int distance(String secondWord) {
         if (secondWord == null) throw new IllegalArgumentException("The distance method cannot accept null");
         secondWord = removeBlankSpaces(secondWord);
         secondWord = lowerCase(secondWord);
-        if (this.word.equals(secondWord)) return 0;
         return calculateDistance(secondWord);
     }
 
     private int calculateDistance(String secondWord) {
-        int diffCounter = calculateLengthDistance(secondWord);
-        diffCounter += calculateCharacterDistance(secondWord);
-        return diffCounter;
-    }
-
-    public int calculateLengthDistance(String secondWord) {
-        return Math.abs(secondWord.length() - this.word.length());
-    }
-
-    public int calculateCharacterDistance(String secondWord) {
-        int result = 0;
-        int shortestLength = Math.min(this.word.length(), secondWord.length());
-        for (int i = 0; i < shortestLength; i++) {
-            if (word.charAt(i) != secondWord.charAt(i)) {
-                result++;
-            }
-        }
-        return result;
+        return calculators.stream()
+                .mapToInt(leviCalculator -> leviCalculator.distance(secondWord))
+                .sum();
     }
 
     private String removeBlankSpaces(String word) {
@@ -49,6 +44,6 @@ public class Levi {
     public boolean equals(Object obj) {
         if (obj.getClass() != this.getClass()) return false;
         Levi object = (Levi) obj;
-        return this.word.equals(object.word);
+        return this.calculators.equals(object.calculators);
     }
 }

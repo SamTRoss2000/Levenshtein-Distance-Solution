@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -8,11 +10,12 @@ public class LeviTest {
 
     private final String emptyString = "";
     String kittenString = "kitten";
-    Levi kitten = new Levi(kittenString);
-
+    Levi kitten = new Levi(kittenString);  // could be a Levi calculator
+    LeviCalculator container = new Levi(List.of(new LeviLength(kittenString)));
     @Test
     void identicalLeviObjectsAreEqual() {
         assertEquals(kitten, new Levi(kittenString));
+        assertNotEquals(kitten, container);
     }
 
     @Test
@@ -23,7 +26,16 @@ public class LeviTest {
     @Test
     void nullWordsAreIllegalArguments() {
         IllegalArgumentException nullLeviThrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new Levi(null);
+            new Levi((String) null);
+        });
+        assertEquals("The word within Levi cannot be null", nullLeviThrown.getMessage());
+    }
+
+
+    @Test
+    void nullCalculatorsAreIllegalArguments() {
+        IllegalArgumentException nullLeviThrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Levi((List<LeviCalculator>) null);
         });
         assertEquals("The word within Levi cannot be null", nullLeviThrown.getMessage());
     }
@@ -40,6 +52,7 @@ public class LeviTest {
     @Test
     void emptyDistanceDefersToInputLength() {
         assertEquals(kittenString.length(), kitten.distance(emptyString));
+        assertEquals(kittenString.length(), container.distance(emptyString));
     }
 
     @Test
