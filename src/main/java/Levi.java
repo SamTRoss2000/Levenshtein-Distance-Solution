@@ -1,34 +1,27 @@
 public class Levi {
 
-    String word;
-
-    Levi(String word) {
-        if (word == null) throw new IllegalArgumentException("The word within Levi cannot be null");
-        this.word = removeBlankSpaces(word);
-        this.word = lowerCase(this.word);
-    }
-
-    int distance(String secondWord) {
-        if (secondWord == null) throw new IllegalArgumentException("The distance method cannot accept null");
+    static int distance(String word, String secondWord) {
+        if (word == null || secondWord == null) throw new IllegalArgumentException("The distance method cannot accept null");
+        word = removeBlankSpaces(word);
         secondWord = removeBlankSpaces(secondWord);
+        word = lowerCase(word);
         secondWord = lowerCase(secondWord);
-        if (this.word.equals(secondWord)) return 0;
-        return calculateDistance(secondWord);
+        if (word.equals(secondWord)) return 0;
+        return calculateDistance(word, secondWord);
     }
-
-    private int calculateDistance(String secondWord) {
-        int diffCounter = calculateLengthDistance(secondWord);
-        diffCounter += calculateCharacterDistance(secondWord);
+    static private int calculateDistance(String word, String secondWord) {
+        int diffCounter = calculateLengthDistance(word, secondWord);
+        diffCounter += calculateCharacterDistance(word, secondWord);
         return diffCounter;
     }
 
-    public int calculateLengthDistance(String secondWord) {
-        return Math.abs(secondWord.length() - this.word.length());
+    static public int calculateLengthDistance(String word, String secondWord) {
+        return Math.abs(secondWord.length() - word.length());
     }
 
-    public int calculateCharacterDistance(String secondWord) {
+    static int calculateCharacterDistance(String word, String secondWord) {
         int result = 0;
-        int shortestLength = Math.min(this.word.length(), secondWord.length());
+        int shortestLength = Math.min(word.length(), secondWord.length());
         for (int i = 0; i < shortestLength; i++) {
             if (word.charAt(i) != secondWord.charAt(i)) {
                 result++;
@@ -37,18 +30,11 @@ public class Levi {
         return result;
     }
 
-    private String removeBlankSpaces(String word) {
+    static private String removeBlankSpaces(String word) {
         return word.replaceAll(" ", "");
     }
 
-    private String lowerCase(String secondWord) {
+    static private String lowerCase(String secondWord) {
         return secondWord.toLowerCase();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj.getClass() != this.getClass()) return false;
-        Levi object = (Levi) obj;
-        return this.word.equals(object.word);
     }
 }
