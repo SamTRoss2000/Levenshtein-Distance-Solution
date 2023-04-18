@@ -6,18 +6,18 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class LeviLengthTest {
 
-    private final String emptyString = "";
-    String kittenString = "kitten";
-    LeviLength kitten = new LeviLength(kittenString);
+    private final String EMPTY_STRING = "";
+    String KITTEN_STRING = "kitten";
+    LeviLength kitten = new LeviLength(KITTEN_STRING);
 
     @Test
     void identicalLeviObjectsAreEqual() {
-        assertEquals(kitten, new LeviLength(kittenString));
+        assertEquals(kitten, new LeviLength(KITTEN_STRING));
     }
 
     @Test
     void differentClassesAreUnequal() {
-        assertNotEquals(kitten, kittenString);
+        assertNotEquals(kitten, KITTEN_STRING);
     }
 
     @Test
@@ -39,18 +39,18 @@ public class LeviLengthTest {
 
     @Test
     void emptyDistanceDefersToInputLength() {
-        assertEquals(kittenString.length(), kitten.distance(emptyString));
+        assertEquals(KITTEN_STRING.length(), kitten.distance(EMPTY_STRING));
     }
 
     @Test
     void emptyStringsHaveNoDistance() {
-        LeviLength emptyLevi = new LeviLength(emptyString);
-        assertEquals(emptyString.length(), emptyLevi.distance(emptyString));
+        LeviLength emptyLevi = new LeviLength(EMPTY_STRING);
+        assertEquals(EMPTY_STRING.length(), emptyLevi.distance(EMPTY_STRING));
     }
 
     @Test
     void identicalStringsHaveNoDistance() {
-        assertEquals(0, kitten.distance(kittenString));
+        assertEquals(0, kitten.distance(KITTEN_STRING));
     }
 
     @Test

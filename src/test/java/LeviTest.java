@@ -8,19 +8,19 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class LeviTest {
 
-    private final String emptyString = "";
-    String kittenString = "kitten";
-    Levi kitten = new Levi(kittenString);  // could be a Levi calculator
-    LeviCalculator container = new Levi(List.of(new LeviLength(kittenString)));
+    private final static String EMPTY_STRING = "";
+    private final static String KITTEN_STRING = "kitten";
+    Levi kitten = new Levi(KITTEN_STRING);  // could be a Levi calculator
+    LeviCalculator container = new Levi(List.of(new LeviLength(KITTEN_STRING)));
     @Test
     void identicalLeviObjectsAreEqual() {
-        assertEquals(kitten, new Levi(kittenString));
+        assertEquals(kitten, new Levi(KITTEN_STRING));
         assertNotEquals(kitten, container);
     }
 
     @Test
     void differentClassesAreUnequal() {
-        assertNotEquals(kitten, kittenString);
+        assertNotEquals(kitten, KITTEN_STRING);
     }
 
     @Test
@@ -51,33 +51,33 @@ public class LeviTest {
 
     @Test
     void emptyDistanceDefersToInputLength() {
-        assertEquals(kittenString.length(), kitten.distance(emptyString));
-        assertEquals(kittenString.length(), container.distance(emptyString));
+        assertEquals(KITTEN_STRING.length(), kitten.distance(EMPTY_STRING));
+        assertEquals(KITTEN_STRING.length(), container.distance(EMPTY_STRING));
     }
 
     @Test
     void emptyStringsHaveNoDistance() {
-        Levi emptyLevi = new Levi(emptyString);
-        assertEquals(emptyString.length(), emptyLevi.distance(emptyString));
+        Levi emptyLevi = new Levi(EMPTY_STRING);
+        assertEquals(EMPTY_STRING.length(), emptyLevi.distance(EMPTY_STRING));
     }
 
     @Test
     void theDistanceMethodIgnoresBlankSpaces() {
         assertEquals(0, kitten.distance("kit ten"));
         Levi kittenWithSpace = new Levi("kit ten");
-        assertEquals(0, kittenWithSpace.distance(kittenString));
+        assertEquals(0, kittenWithSpace.distance(KITTEN_STRING));
     }
 
     @Test
     void theDistanceMethodIgnoresCapitalLetters() {
         assertEquals(0, kitten.distance("Kitten"));
         Levi kittenCapitalCase = new Levi("Kitten");
-        assertEquals(0,kittenCapitalCase.distance(kittenString));
+        assertEquals(0,kittenCapitalCase.distance(KITTEN_STRING));
     }
 
     @Test
     void identicalStringsHaveNoDistance() {
-        assertEquals(0, kitten.distance(kittenString));
+        assertEquals(0, kitten.distance(KITTEN_STRING));
     }
 
     @Test

@@ -6,17 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class LeviCharacterTest {
 
-    String kittenString = "kitten";
-    LeviCalculator kitten = new LeviCharacter(kittenString);
+    String KITTEN_STRING = "kitten";
+    LeviCalculator kitten = new LeviCharacter(KITTEN_STRING);
 
     @Test
     void identicalLeviObjectsAreEqual() {
-        assertEquals(kitten, new LeviCharacter(kittenString));
+        assertEquals(kitten, new LeviCharacter(KITTEN_STRING));
     }
 
     @Test
     void differentClassesAreUnequal() {
-        assertNotEquals(kitten, kittenString);
+        assertNotEquals(kitten, KITTEN_STRING);
     }
 
     @Test
