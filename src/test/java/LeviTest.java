@@ -90,10 +90,10 @@ public class LeviTest {
     void distanceIncreasesBasedOnCharacterDifference() {
         assertEquals(1, kitten.distance("kipten"));
         assertEquals(1, kitten.distance("mitten"));
-        String adjacentCharacterDifference = "kanten";
-        String nonAdjacentCharacterDifference = "kattin";
-        assertEquals(2, kitten.distance(adjacentCharacterDifference));
-        assertEquals(2, kitten.distance(nonAdjacentCharacterDifference));
+        String ADJACENT_CHARACTER_DIFF = "kanten";
+        String NON_ADJACENT_CHARACTER_DIFF = "kattin";
+        assertEquals(2, kitten.distance(ADJACENT_CHARACTER_DIFF));
+        assertEquals(2, kitten.distance(NON_ADJACENT_CHARACTER_DIFF));
     }
 
     // Does the distance() method return an accurate value when there are differing adjacent letters
