@@ -10,7 +10,7 @@ public class Levi implements LeviCalculator {
     }
 
     Levi(String word) {
-        if (word == null) throw new IllegalArgumentException("The word within Levi cannot be null");
+        if (word == null) word = "";
         String intermediary = removeBlankSpaces(word);
         intermediary = lowerCase(intermediary);
         calculators = Arrays.asList(
@@ -20,7 +20,7 @@ public class Levi implements LeviCalculator {
     }
 
     public int distance(String secondWord) {
-        if (secondWord == null) throw new IllegalArgumentException("The distance method cannot accept null");
+        if (secondWord == null) secondWord = "";
         secondWord = removeBlankSpaces(secondWord);
         secondWord = lowerCase(secondWord);
         return calculateDistance(secondWord);

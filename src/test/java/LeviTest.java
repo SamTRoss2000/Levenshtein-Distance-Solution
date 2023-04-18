@@ -24,13 +24,15 @@ public class LeviTest {
     }
 
     @Test
-    void nullWordsAreIllegalArguments() {
-        IllegalArgumentException nullLeviThrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new Levi((String) null);
-        });
-        assertEquals("The word within Levi cannot be null", nullLeviThrown.getMessage());
+    void nullWordsAreTreatedAsEmptyStrings() {
+        String NULL_STRING = null;
+        Levi nullWord = new Levi(NULL_STRING);
+        assertEquals(6, nullWord.distance(KITTEN_STRING));
     }
-
+    @Test
+    void nullSecondWordsAreTreatedAsEmptyStrings() {
+        assertEquals(6, kitten.distance(null));
+    }
 
     @Test
     void nullCalculatorsAreIllegalArguments() {
@@ -38,15 +40,6 @@ public class LeviTest {
             new Levi((List<LeviCalculator>) null);
         });
         assertEquals("The word within Levi cannot be null", nullLeviThrown.getMessage());
-    }
-
-    @Test
-    void nullSecondWordsAreIllegalArgumentsForDistance() {
-        IllegalArgumentException nullDistanceThrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            kitten.distance(null);
-        });
-
-        assertEquals("The distance method cannot accept null", nullDistanceThrown.getMessage());
     }
 
     @Test
