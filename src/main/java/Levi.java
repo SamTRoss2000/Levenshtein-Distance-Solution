@@ -5,7 +5,12 @@ public class Levi implements LeviCalculator {
 
     List<LeviCalculator> calculators;
     Levi(List<LeviCalculator> calculators) {
-        if (calculators == null) throw new IllegalArgumentException("The word within Levi cannot be null");
+        if (calculators == null) {
+            calculators = Arrays.asList(
+                    new LeviLength(""),
+                    new LeviCharacter("")
+            );
+        }
         this.calculators = calculators;
     }
 

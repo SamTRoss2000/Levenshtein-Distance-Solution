@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -36,10 +35,8 @@ public class LeviTest {
 
     @Test
     void nullCalculatorsAreIllegalArguments() {
-        IllegalArgumentException nullLeviThrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new Levi((List<LeviCalculator>) null);
-        });
-        assertEquals("The word within Levi cannot be null", nullLeviThrown.getMessage());
+        Levi nullCalculator = new Levi((List<LeviCalculator>) null);
+        assertEquals(6, nullCalculator.distance(KITTEN_STRING));
     }
 
     @Test
