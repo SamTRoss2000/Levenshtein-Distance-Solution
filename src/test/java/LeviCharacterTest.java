@@ -1,39 +1,32 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class LeviCharacterTest {
-
-    String KITTEN_STRING = "kitten";
-    LeviCalculator kitten = new LeviCharacter(KITTEN_STRING);
+    
+    LeviCharacter kitten = new LeviCharacter(StringConstants.KITTEN_STRING);
 
     @Test
     void identicalLeviObjectsAreEqual() {
-        assertEquals(kitten, new LeviCharacter(KITTEN_STRING));
+        assertEquals(kitten, new LeviCharacter(StringConstants.KITTEN_STRING));
     }
 
     @Test
     void differentClassesAreUnequal() {
-        assertNotEquals(kitten, KITTEN_STRING);
+        assertNotEquals(kitten, StringConstants.KITTEN_STRING);
     }
 
     @Test
-    void nullWordsAreIllegalArguments() {
-        IllegalArgumentException nullLeviThrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new LeviCharacter(null);
-        });
-        assertEquals("The word within Levi cannot be null", nullLeviThrown.getMessage());
+    void nullWordsAreTreatedAsEmptyStrings() {
+        String NULL_STRING = null;
+        LeviLength nullWord = new LeviLength(NULL_STRING);
+        assertEquals(6, nullWord.distance(StringConstants.KITTEN_STRING));
     }
 
     @Test
-    void nullSecondWordsAreIllegalArgumentsForDistance() {
-        IllegalArgumentException nullDistanceThrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            kitten.distance(null);
-        });
-
-        assertEquals("The distance method cannot accept null", nullDistanceThrown.getMessage());
+    void nullSecondWordsAreTreatedAsEmptyStrings() {
+        assertEquals(0, kitten.distance(null));
     }
 
     @Test

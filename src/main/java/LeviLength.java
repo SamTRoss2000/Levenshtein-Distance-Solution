@@ -3,12 +3,12 @@ public class LeviLength implements LeviCalculator {
     private final String word;
 
     LeviLength(String word){
-        if (word == null) throw new IllegalArgumentException("The word within Levi cannot be null");
+        if (word == null) word = "";
         this.word = word;
     }
 
     public int distance(String secondWord) {
-        if (secondWord == null) throw new IllegalArgumentException("The distance method cannot accept null");
+        if (secondWord == null) secondWord = "";
         return Math.abs(secondWord.length() - this.word.length());
     }
 
